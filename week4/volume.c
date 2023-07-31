@@ -38,10 +38,11 @@ int main(int argc, char *argv[])
     fread(header, HEADER_SIZE, 1, input);
     fwrite(header, HEADER_SIZE, 1, output);
 
-    uint16_t buffer;
-    while(fread(&buffer, sizeof(uint16_t), 1, input)){
+    int16_t buffer;
+    while (fread(&buffer, sizeof(int16_t), 1, input))
+    {
         buffer *= factor;
-        fwrite(&buffer, sizeof(uint16_t), 1, output);
+        fwrite(&buffer, sizeof(int16_t), 1, output);
     }
 
     // TODO: Read samples from input file and write updated data to output file
