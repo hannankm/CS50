@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<table class = "table" >
+    <thead>
+        <tr>
+            <th>Name</td>
+            <th>Shares</td>
+            <th>Current Price</td>
+            <th>Total Value</td>
+            <th></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in stocks %}
+        <tr>
+            <td>{{stock["symbol"]}}</td>
+            <td>{{stock["shares"]}}</td>
+            <td>{{stock["price"] | usd }}</td>
+            <td>{{stock["value"] | usd }}</td>
+            <td>
+                <form action="/buy" method= "POST">
+                    <input name ="symbol" hidden value="{{stock['symbol']}}">
+                    <input name = "shares" hidden value = "1">
+                    <input type = "submit" value = "+">
+                </form>
+            </td>
+            <td>
+                <form action="/sell" method ="POST">
+                    <input name ="symbol" hidden value="{{stock['symbol']}}">
+                    <input name = "shares" hidden value = "1">
+                    <input type = "submit" value = "-">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr class = ".no-border">
+            <td></td>
+            <td></td>
+            <td><strong>Cash</strong> </td>
+            <td>{{cash | usd }} </td>
+        </tr>
+        <tr class = ".no-border">
+            <td></td>
+            <td></td>
+            <td><strong>TOTAL</strong> </td>
+            <td>{{total | usd }} </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

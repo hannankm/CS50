@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quotes
+{% endblock %}
+
+{% block main %}
+<p class = "mx-auto w-auto"> A share of {{quotes.name}} ({{quotes.symbol}}) costs {{quotes.price | usd}}
+{% endblock %}
