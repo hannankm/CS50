@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function (){
+                let incorrect = document.querySelectorAll(".incorrect");
+                let correct = document.querySelector(".correct");
+                let result = document.querySelector("#result");
+
+                for (let i = 0; i < incorrect.length; i++){
+                    incorrect[i].addEventListener("click", function (){
+                    incorrect[i].style.backgroundColor = 'red';
+                    result.innerHTML = 'Incorrect';
+                });
+                }
+                correct.addEventListener("click", function (){
+                    correct.style.backgroundColor = 'green';
+                    result.innerHTML = 'Correct!';
+                })
+                document.querySelector('#myform').addEventListener("submit", function (event){
+                    event.preventDefault();
+                    let answer = document.querySelector("#answer").value;
+                    if (answer === 'North')
+                    {
+                        document.querySelector("#result1").innerHTML = 'Correct!';
+                        document.querySelector("#answer").style.backgroundColor = 'green';
+                    }
+                    else
+                    {
+                        document.querySelector("#result1").innerHTML = "Incorrect";
+                        document.querySelector("#answer").style.backgroundColor = 'red';
+                    }
+                });
+        });
+            // TODO: Add code to check answers to questions
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>
+                    Which team in the English Premiere League is the only one to have an invincible season?
+                </h3>
+                <button class= "incorrect">
+                    Manchester United
+                </button>
+                <button class= "correct">
+                    Arsenal
+                </button>
+                <button class= "incorrect">
+                    Liverpool
+                </button>
+                <button class= "incorrect">
+                    Manchester City
+                </button>
+                <p id = "result"></p>
+                <!-- TODO: Add multiple choice question here -->
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <form id = "myform">
+                    <h3>Where in London is Arsenal located? </h3>
+                    <input id = "answer" type = "text" required>
+                    <input type="submit" value ="Confirm Answer">
+                </form>
+                <p id = "result1"></p>
+                <!-- TODO: Add free response question here -->
+            </div>
+        </div>
+    </body>
+</html>
